@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Q&A</title>
+    <style>
+        #results {
+            margin-top: 20px;
+            padding: 10px;
+            border-top: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to my JavaScript Q&A!</h1>
+
+    <p id="question">What is your name?</p>
+    <input type="text" id="answerInput" placeholder="Type your answer here">
+    <button id="nextBtn">Next</button>
+
+    <div id="results"></div>
+
+    <script>
+        const questions = [
+            "What is your name?",
+            "How are you doing today?",
+            "How old are you?",
+            "Do you like JavaScript?",
+            "What kind of games or websites do you like?",
+            "Would you like to learn more about coding?"
+        ];
+
+        const answers = [];
+        let currentQuestion = 0;
+
+        const questionEl = document.getElementById("question");
+        const inputEl = document.getElementById("answerInput");
+        const buttonEl = document.getElementById("nextBtn");
+        const resultsEl = document.getElementById("results");
+
+        buttonEl.addEventListener("click", () => {
+            const userAnswer = inputEl.value.trim();
+
+            if (userAnswer === "") {
+                alert("Please enter an answer before continuing.");
+                return;
+            }
+
+            answers.push(userAnswer);
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                questionEl.textContent = questions[currentQuestion];
+                inputEl.value = "";
+            } else {
+                // All questions answered
+                questionEl.textContent = "Thanks for answering all the questions!";
+                inputEl.style.display = "none";
+                buttonEl.style.display = "none";
+
+                // Show answers on the page
+                let resultHTML = "<h2>These are the questions and your answers:</h2><ul>";
+                questions.forEach((q, i) => {
+                    resultHTML += `<li><strong>${q}</strong><br>Answer: ${answers[i]}</li>`;
+                });
+                resultHTML += "</ul>";
+                resultsEl.innerHTML = resultHTML;
+
+                // Also log to console
+                console.log("Your Answers:");
+                questions.forEach((q, i) => {
+                    console.log(`${q} ${answers[i]}`);
+                });
+            }
+        });
+    </script>
+</body>
+<css=
+ {
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    background-color: color-mix(in lab, color percentage, color percentage);
+}
+h1{
+    color:darkred;
+    text-align: center
+}
+input, button {
+
+font-family: Georgia, 'Times New Roman', Times, serif;
+padding: 10px;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+#answer {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: white;
+    padding: 15px;
+    margin-top: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+</css>
+</html>
